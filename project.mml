@@ -1,0 +1,140 @@
+{
+  "bounds": [
+    -180,
+    -85.0511,
+    180,
+    85.0511
+  ],
+  "center": [
+    2.5,
+    48.8,
+    16
+  ],
+  "format": "png8",
+  "interactivity": false,
+  "minzoom": 0,
+  "maxzoom": 22,
+  "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+  "Stylesheet": [
+    "autopilot.mss"
+  ],
+  "Layer": [
+    {
+      "geometry": "linestring",
+      "extent": [
+        -179.99999692067183,
+        -84.96651228427098,
+        179.99999692067183,
+        84.96651228427099
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select case when abs(osm_id)>199000000 then 2013 when abs(osm_id)>92800000 then 2011 when abs(osm_id)>29430000 then 2009 else 2007 end as year, st_translate(st_snaptogrid(way,!pixel_width!/2,!pixel_height!/2),((case when abs(osm_id)>199000000 then 2013 when abs(osm_id)>92800000 then 2011 when abs(osm_id)>29430000 then 2009 else 2007 end)-2007)*!pixel_width!*6,0) as way2 from planet_osm_line where way && !bbox! order by osm_id) as ways",
+        "key_field": "",
+        "geometry_field": "way2",
+        "extent_cache": "custom",
+        "extent": "-20037508,-19929239,20037508,19929239",
+        "dbname": "osm",
+        "host": "localhost",
+        "user": "fr",
+        "password": "m4d31nfr4nc3"
+      },
+      "id": "ways",
+      "class": "ways",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "ways"
+    },
+    {
+      "geometry": "linestring",
+      "extent": [
+        -179.99999692067183,
+        -84.96651228427098,
+        179.99999692067183,
+        84.96651228427099
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select case when abs(osm_id)>199000000 then 2013 when abs(osm_id)>92800000 then 2011 when abs(osm_id)>29430000 then 2009 else 2007 end as year, st_translate(st_snaptogrid(way,!pixel_width!/2,!pixel_height!/2),(2007-(case when abs(osm_id)>199000000 then 2013 when abs(osm_id)>92800000 then 2011 when abs(osm_id)>29430000 then 2009 else 2007 end))*!pixel_width!*6,0) as way2 from planet_osm_line where way && !bbox! order by osm_id) as ways",
+        "key_field": "",
+        "geometry_field": "way2",
+        "extent_cache": "custom",
+        "extent": "-20037508,-19929239,20037508,19929239",
+        "dbname": "osm",
+        "host": "localhost",
+        "user": "fr",
+        "password": "m4d31nfr4nc3"
+      },
+      "id": "ways2",
+      "class": "ways2",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "ways2"
+    },
+    {
+      "geometry": "point",
+      "extent": [
+        -179.99999692067183,
+        -84.96651228427098,
+        179.99999692067183,
+        84.96651228427099
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select osm_id, case when osm_id>199000000 then 2013 when osm_id>92800000 then 2011 when osm_id>29430000 then 2009 else 2007 end as year, way from planet_osm_point order by osm_id) as nodes",
+        "key_field": "",
+        "geometry_field": "",
+        "extent_cache": "custom",
+        "extent": "-20037508,-19929239,20037508,19929239",
+        "dbname": "osm",
+        "host": "localhost",
+        "user": "fr",
+        "password": "m4d31nfr4nc3",
+        "id": "nodes",
+        "project": "osm-4d",
+        "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
+      },
+      "id": "nodes",
+      "class": "nodes",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "nodes"
+    },
+    {
+      "geometry": "point",
+      "extent": [
+        -179.99999692067183,
+        -84.96651228427098,
+        179.99999692067183,
+        84.96651228427099
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select way, name, place from planet_osm_point where place in ('city','town','village','hamlet')) as place",
+        "key_field": "",
+        "geometry_field": "",
+        "extent_cache": "custom",
+        "extent": "-20037508,-19929239,20037508,19929239",
+        "dbname": "osm",
+        "host": "localhost",
+        "user": "fr",
+        "password": "m4d31nfr4nc3"
+      },
+      "id": "place",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "place"
+    }
+  ],
+  "scale": 1,
+  "metatile": 8,
+  "_basemap": "",
+  "name": "",
+  "description": "",
+  "attribution": ""
+}
