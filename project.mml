@@ -29,7 +29,7 @@
       ],
       "Datasource": {
         "type": "postgis",
-        "table": "(select case when abs(osm_id)>199000000 then 2013 when abs(osm_id)>92800000 then 2011 when abs(osm_id)>29430000 then 2009 else 2007 end as year, st_translate(st_snaptogrid(way,!pixel_width!/2,!pixel_height!/2),((case when abs(osm_id)>199000000 then 2013 when abs(osm_id)>92800000 then 2011 when abs(osm_id)>29430000 then 2009 else 2007 end)-2007)*!pixel_width!*6,0) as way2 from planet_osm_polygon where way && !bbox! and way_area < 2000 order by osm_id) as ways",
+        "table": "(select case when abs(osm_id)>199000000 then 2013 when abs(osm_id)>92800000 then 2011 when abs(osm_id)>29430000 then 2009 else 2007 end as year, st_translate(st_snaptogrid(way,!pixel_width!/2,!pixel_height!/2),((case when abs(osm_id)>199000000 then 2013 when abs(osm_id)>92800000 then 2011 when abs(osm_id)>29430000 then 2009 else 2007 end)-2007)*!pixel_width!*5,0) as way2 from planet_osm_polygon where way && !bbox! and landuse is null and boundary is null and way_area < 1000000 order by osm_id) as ways",
         "key_field": "",
         "geometry_field": "way2",
         "extent_cache": "custom",
@@ -56,7 +56,7 @@
       ],
       "Datasource": {
         "type": "postgis",
-        "table": "(select case when abs(osm_id)>199000000 then 2013 when abs(osm_id)>92800000 then 2011 when abs(osm_id)>29430000 then 2009 else 2007 end as year, st_translate(st_snaptogrid(way,!pixel_width!/2,!pixel_height!/2),(2007-(case when abs(osm_id)>199000000 then 2013 when abs(osm_id)>92800000 then 2011 when abs(osm_id)>29430000 then 2009 else 2007 end))*!pixel_width!*6,0) as way2 from planet_osm_polygon where way && !bbox! and way_area < 2000 order by osm_id) as ways",
+        "table": "(select case when osm_id>199000000 then 2013 when osm_id>92800000 then 2011 when osm_id>29430000 then 2009 else 2007 end as year, st_translate(st_snaptogrid(way,!pixel_width!/2,!pixel_height!/2),(2007-(case when osm_id>199000000 then 2013 when osm_id>92800000 then 2011 when osm_id>29430000 then 2009 else 2007 end))*!pixel_width!*5,0) as way2 from planet_osm_polygon where way && !bbox! and landuse is null and boundary is null and way_area < 1000000 order by osm_id) as ways",
         "key_field": "",
         "geometry_field": "way2",
         "extent_cache": "custom",
@@ -83,7 +83,7 @@
       ],
       "Datasource": {
         "type": "postgis",
-        "table": "(select case when abs(osm_id)>199000000 then 2013 when abs(osm_id)>92800000 then 2011 when abs(osm_id)>29430000 then 2009 else 2007 end as year, st_translate(st_snaptogrid(way,!pixel_width!/2,!pixel_height!/2),((case when abs(osm_id)>199000000 then 2013 when abs(osm_id)>92800000 then 2011 when abs(osm_id)>29430000 then 2009 else 2007 end)-2007)*!pixel_width!*6,0) as way2 from planet_osm_line where way && !bbox! and osm_id > 0 order by osm_id) as ways",
+        "table": "(select case when osm_id>199000000 then 2013 when osm_id>92800000 then 2011 when osm_id>29430000 then 2009 else 2007 end as year, st_translate(st_snaptogrid(way,!pixel_width!/2,!pixel_height!/2),((case when osm_id>199000000 then 2013 when osm_id>92800000 then 2011 when osm_id>29430000 then 2009 else 2007 end)-2007)*!pixel_width!*5,0) as way2 from planet_osm_line where way && !bbox! and osm_id > 0 order by osm_id) as ways",
         "key_field": "",
         "geometry_field": "way2",
         "extent_cache": "custom",
@@ -110,7 +110,7 @@
       ],
       "Datasource": {
         "type": "postgis",
-        "table": "(select case when highway in ('motorway','trunk','primary','secondary') then coalesce(name,ref,'') else '' end as name, case when abs(osm_id)>199000000 then 2013 when abs(osm_id)>92800000 then 2011 when abs(osm_id)>29430000 then 2009 else 2007 end as year, st_translate(st_snaptogrid(way,!pixel_width!/2,!pixel_height!/2),(2007-(case when abs(osm_id)>199000000 then 2013 when abs(osm_id)>92800000 then 2011 when abs(osm_id)>29430000 then 2009 else 2007 end))*!pixel_width!*6,0) as way2 from planet_osm_line where way && !bbox! and osm_id>0  order by osm_id) as ways",
+        "table": "(select case when highway in ('motorway','trunk','primary','secondary') then coalesce(name,ref,'') else '' end as name, case when osm_id>199000000 then 2013 when osm_id>92800000 then 2011 when osm_id>29430000 then 2009 else 2007 end as year, st_translate(st_snaptogrid(way,!pixel_width!/2,!pixel_height!/2),(2007-(case when osm_id>199000000 then 2013 when osm_id>92800000 then 2011 when osm_id>29430000 then 2009 else 2007 end))*!pixel_width!*5,0) as way2 from planet_osm_line where way && !bbox! and osm_id>0  order by osm_id) as ways",
         "key_field": "",
         "geometry_field": "way2",
         "extent_cache": "custom",
