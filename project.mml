@@ -20,6 +20,60 @@
   ],
   "Layer": [
     {
+      "geometry": "polygon",
+      "extent": [
+        -179.99999692067183,
+        -84.96651228427098,
+        179.99999692067183,
+        84.96651228427099
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select case when abs(osm_id)>199000000 then 2013 when abs(osm_id)>92800000 then 2011 when abs(osm_id)>29430000 then 2009 else 2007 end as year, st_translate(st_snaptogrid(way,!pixel_width!/2,!pixel_height!/2),((case when abs(osm_id)>199000000 then 2013 when abs(osm_id)>92800000 then 2011 when abs(osm_id)>29430000 then 2009 else 2007 end)-2007)*!pixel_width!*6,0) as way2 from planet_osm_polygon where way && !bbox! and way_area < 2000 order by osm_id) as ways",
+        "key_field": "",
+        "geometry_field": "way2",
+        "extent_cache": "custom",
+        "extent": "-20037508,-19929239,20037508,19929239",
+        "dbname": "osm",
+        "host": "localhost",
+        "user": "fr",
+        "password": "m4d31nfr4nc3"
+      },
+      "id": "area",
+      "class": "area",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "area"
+    },
+    {
+      "geometry": "polygon",
+      "extent": [
+        -179.99999692067183,
+        -84.96651228427098,
+        179.99999692067183,
+        84.96651228427099
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select case when abs(osm_id)>199000000 then 2013 when abs(osm_id)>92800000 then 2011 when abs(osm_id)>29430000 then 2009 else 2007 end as year, st_translate(st_snaptogrid(way,!pixel_width!/2,!pixel_height!/2),(2007-(case when abs(osm_id)>199000000 then 2013 when abs(osm_id)>92800000 then 2011 when abs(osm_id)>29430000 then 2009 else 2007 end))*!pixel_width!*6,0) as way2 from planet_osm_polygon where way && !bbox! and way_area < 2000 order by osm_id) as ways",
+        "key_field": "",
+        "geometry_field": "way2",
+        "extent_cache": "custom",
+        "extent": "-20037508,-19929239,20037508,19929239",
+        "dbname": "osm",
+        "host": "localhost",
+        "user": "fr",
+        "password": "m4d31nfr4nc3"
+      },
+      "id": "area2",
+      "class": "area2",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "area2"
+    },
+    {
       "geometry": "linestring",
       "extent": [
         -179.99999692067183,
@@ -29,7 +83,7 @@
       ],
       "Datasource": {
         "type": "postgis",
-        "table": "(select case when abs(osm_id)>199000000 then 2013 when abs(osm_id)>92800000 then 2011 when abs(osm_id)>29430000 then 2009 else 2007 end as year, st_translate(st_snaptogrid(way,!pixel_width!/2,!pixel_height!/2),((case when abs(osm_id)>199000000 then 2013 when abs(osm_id)>92800000 then 2011 when abs(osm_id)>29430000 then 2009 else 2007 end)-2007)*!pixel_width!*6,0) as way2 from planet_osm_line where way && !bbox! order by osm_id) as ways",
+        "table": "(select case when abs(osm_id)>199000000 then 2013 when abs(osm_id)>92800000 then 2011 when abs(osm_id)>29430000 then 2009 else 2007 end as year, st_translate(st_snaptogrid(way,!pixel_width!/2,!pixel_height!/2),((case when abs(osm_id)>199000000 then 2013 when abs(osm_id)>92800000 then 2011 when abs(osm_id)>29430000 then 2009 else 2007 end)-2007)*!pixel_width!*6,0) as way2 from planet_osm_line where way && !bbox! and osm_id > 0 order by osm_id) as ways",
         "key_field": "",
         "geometry_field": "way2",
         "extent_cache": "custom",
@@ -56,7 +110,7 @@
       ],
       "Datasource": {
         "type": "postgis",
-        "table": "(select case when abs(osm_id)>199000000 then 2013 when abs(osm_id)>92800000 then 2011 when abs(osm_id)>29430000 then 2009 else 2007 end as year, st_translate(st_snaptogrid(way,!pixel_width!/2,!pixel_height!/2),(2007-(case when abs(osm_id)>199000000 then 2013 when abs(osm_id)>92800000 then 2011 when abs(osm_id)>29430000 then 2009 else 2007 end))*!pixel_width!*6,0) as way2 from planet_osm_line where way && !bbox! order by osm_id) as ways",
+        "table": "(select case when highway in ('motorway','trunk','primary','secondary') then coalesce(name,ref,'') else '' end as name, case when abs(osm_id)>199000000 then 2013 when abs(osm_id)>92800000 then 2011 when abs(osm_id)>29430000 then 2009 else 2007 end as year, st_translate(st_snaptogrid(way,!pixel_width!/2,!pixel_height!/2),(2007-(case when abs(osm_id)>199000000 then 2013 when abs(osm_id)>92800000 then 2011 when abs(osm_id)>29430000 then 2009 else 2007 end))*!pixel_width!*6,0) as way2 from planet_osm_line where way && !bbox! and osm_id>0  order by osm_id) as ways",
         "key_field": "",
         "geometry_field": "way2",
         "extent_cache": "custom",
@@ -64,7 +118,10 @@
         "dbname": "osm",
         "host": "localhost",
         "user": "fr",
-        "password": "m4d31nfr4nc3"
+        "password": "m4d31nfr4nc3",
+        "id": "ways2",
+        "project": "anaglyph-cartocss",
+        "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over"
       },
       "id": "ways2",
       "class": "ways2",
@@ -101,7 +158,34 @@
       "srs-name": "900913",
       "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
       "advanced": {},
-      "name": "nodes"
+      "name": "nodes",
+      "status": "off"
+    },
+    {
+      "extent": [
+        -179.99999692067183,
+        -84.96651228427098,
+        179.99999692067183,
+        84.96651228427099
+      ],
+      "Datasource": {
+        "type": "postgis",
+        "table": "(select way, name, admin_level from planet_osm_polygon where boundary='administrative') as admin",
+        "key_field": "",
+        "geometry_field": "",
+        "extent_cache": "custom",
+        "extent": "-20037508,-19929239,20037508,19929239",
+        "dbname": "osm",
+        "host": "localhost",
+        "user": "fr",
+        "password": "m4d31nfr4nc3"
+      },
+      "id": "admin",
+      "class": "",
+      "srs-name": "900913",
+      "srs": "+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over",
+      "advanced": {},
+      "name": "admin"
     },
     {
       "geometry": "point",
