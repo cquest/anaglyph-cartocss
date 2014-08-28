@@ -7,39 +7,29 @@ Map { background-color: black; }
 @red_level: #f00;
 @cyan_level: #0cc;
 
-.nodes [zoom>=13] {
+.nodes [zoom>=15] {
   ::right {
-  marker-width: 1;
-  [zoom>=15] { marker-width: 3; }
+  marker-width: 2;
   marker-line-width: 0;
   marker-allow-overlap: true;
   marker-ignore-placement: true;
   marker-fill: @red_level;
   marker-opacity: 0.5;
-//  [osm_id> 250000000] { marker-transform: "translate(-8)"; }
-  [osm_id> 325000000] { marker-transform: "translate( +6)"; } // 2009
-//  [osm_id> 602500000] { marker-transform: "translate(0)"; }
-  [osm_id>1077000000] { marker-transform: "translate(+12)"; } // 2010
-//  [osm_id>1572300000] { marker-transform: "translate(+8)"; }
-  [osm_id>2090600000] { marker-transform: "translate(+18)";} // 2013
-//  [osm_id>2604000000] { marker-transform: "translate(+16)";}
+  [osm_id> 325000000] { marker-transform: "translate( +6)"; marker-width: 2.33; } // 2009
+  [osm_id>1077000000] { marker-transform: "translate(+12)"; marker-width: 2.66; } // 2011
+  [osm_id>2090600000] { marker-transform: "translate(+18)"; marker-width: 3; } // 2013
   }
   
   ::left {
-  marker-width: 1;
-  [zoom>=15] { marker-width: 3; }
+  marker-width: 2;
   marker-line-width: 0;
   marker-allow-overlap: true;
   marker-ignore-placement: true;
   marker-fill: @cyan_level;
-  marker-opacity: 0.5*;
-//  [osm_id> 250000000] { marker-transform: "translate(+8)"; }
-  [osm_id> 325000000] { marker-transform: "translate( -6)"; }
-//  [osm_id> 602500000] { marker-transform: "translate(+)"; }
-  [osm_id>1077000000] { marker-transform: "translate(-12)"; }
-//  [osm_id>1572300000] { marker-transform: "translate(-8)"; }
-  [osm_id>2090600000] { marker-transform: "translate(-18)"; }
-//  [osm_id>2604000000] { marker-transform: "translate(-16)";}
+  marker-opacity: 0.5;
+  [osm_id> 325000000] { marker-transform: "translate( -6)"; marker-width: 2.33; } // 2009
+  [osm_id>1077000000] { marker-transform: "translate(-12)"; marker-width: 2.66; } // 2011
+  [osm_id>2090600000] { marker-transform: "translate(-18)"; marker-width: 3; } // 2013
    }
   
 }
